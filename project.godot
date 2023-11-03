@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="SpaceRookie"
+run/main_scene="res://game/game.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=854
+window/size/viewport_height=600
 
 [rendering]
 

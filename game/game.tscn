@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4vwrmoi6lups"]
+
+[ext_resource type="Texture2D" uid="uid://70w1hcodnak6" path="res://assets/space_background_pack/layers/parallax-space-backgound.png" id="1_ugrhg"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(427.25, 300.75)
+scale = Vector2(3.13787, 3.75312)
+texture = ExtResource("1_ugrhg")
