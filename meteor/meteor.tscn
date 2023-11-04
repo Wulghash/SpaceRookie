@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwvwrbttbbm4s"]
+
+[ext_resource type="Script" path="res://meteor/meteor.gd" id="1_j7kd3"]
+[ext_resource type="Texture2D" uid="uid://bv1mrrqwqaatn" path="res://assets/Meteors/spaceMeteors_001.png" id="2_71eo3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y1e0g"]
+
+[node name="Meteor" type="Area2D"]
+visibility_layer = 7
+script = ExtResource("1_j7kd3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y1e0g")
+
+[node name="Texture1" type="Sprite2D" parent="."]
+position = Vector2(718, 324)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_71eo3")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(791, 561)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier"]

@@ -1,14 +1,49 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4vwrmoi6lups"]
+[gd_scene load_steps=7 format=3 uid="uid://b4vwrmoi6lups"]
 
+[ext_resource type="Script" path="res://game/game.gd" id="1_g7ny2"]
 [ext_resource type="Texture2D" uid="uid://70w1hcodnak6" path="res://assets/space_background_pack/layers/parallax-space-backgound.png" id="1_ugrhg"]
+[ext_resource type="PackedScene" uid="uid://dwvwrbttbbm4s" path="res://meteor/meteor.tscn" id="2_1tpqp"]
 [ext_resource type="PackedScene" uid="uid://dnc4ns6clwsca" path="res://spaceShipCb/space_ship_cb.tscn" id="2_ubgdr"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwyed"]
+size = Vector2(849.5, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pc80y"]
+size = Vector2(848, 20)
+
 [node name="Game" type="Node2D"]
+script = ExtResource("1_g7ny2")
+meteor_scene = ExtResource("2_1tpqp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(427.25, 300.75)
+position = Vector2(426, 301)
 scale = Vector2(3.13787, 3.75312)
 texture = ExtResource("1_ugrhg")
 
 [node name="SpaceShipCb" parent="." instance=ExtResource("2_ubgdr")]
 position = Vector2(65, 291)
+
+[node name="MeteorHolder" type="Node" parent="."]
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(428.25, 607)
+shape = SubResource("RectangleShape2D_jwyed")
+
+[node name="Celling" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Celling"]
+position = Vector2(426, -9)
+shape = SubResource("RectangleShape2D_pc80y")
+
+[node name="UpperMarker" type="Marker2D" parent="."]
+position = Vector2(804, 45)
+
+[node name="LowerMarker" type="Marker2D" parent="."]
+position = Vector2(819, 558)
+
+[node name="MeteorSpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="MeteorSpawnTimer" to="." method="_on_meteor_spawn_timer_timeout"]
