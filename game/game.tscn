@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4vwrmoi6lups"]
+[gd_scene load_steps=3 format=3 uid="uid://b4vwrmoi6lups"]
 
 [ext_resource type="Texture2D" uid="uid://70w1hcodnak6" path="res://assets/space_background_pack/layers/parallax-space-backgound.png" id="1_ugrhg"]
+[ext_resource type="PackedScene" uid="uid://dnc4ns6clwsca" path="res://spaceShipCb/space_ship_cb.tscn" id="2_ubgdr"]
 
 [node name="Game" type="Node2D"]
 
@@ -8,3 +9,6 @@
 position = Vector2(427.25, 300.75)
 scale = Vector2(3.13787, 3.75312)
 texture = ExtResource("1_ugrhg")
+
+[node name="SpaceShipCb" parent="." instance=ExtResource("2_ubgdr")]
+position = Vector2(65, 291)

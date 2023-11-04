@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnc4ns6clwsca"]
+
+[ext_resource type="Texture2D" uid="uid://do1ppckdw6wqf" path="res://assets/Ships/spaceShips_008.png" id="1_5vod0"]
+[ext_resource type="Script" path="res://spaceShipCb/space_ship_cb.gd" id="1_14mji"]
+[ext_resource type="Texture2D" uid="uid://gxp2ou7p5j3t" path="res://assets/ship_glow/effect_purple.png" id="2_txx7s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8rnwt"]
+resource_local_to_scene = true
+radius = 37.0
+
+[sub_resource type="Animation" id="Animation_87uuf"]
+resource_name = "glow_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GlowSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.580392, 0.243137, 0.282353, 1), Color(0.984314, 0.960784, 0.941176, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_me8st"]
+resource_name = "rotation_up"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.9448, 1.22173]
+}
+
+[sub_resource type="Animation" id="Animation_5qa5x"]
+resource_name = "rotation_down"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.65557, 2.00713]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jyl1k"]
+_data = {
+"glow_animation": SubResource("Animation_87uuf"),
+"rotation_down": SubResource("Animation_5qa5x"),
+"rotation_up": SubResource("Animation_me8st")
+}
+
+[node name="SpaceShipCb" type="CharacterBody2D"]
+script = ExtResource("1_14mji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8rnwt")
+
+[node name="ShipSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+rotation = 1.65557
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_5vod0")
+
+[node name="GlowSprite" type="Sprite2D" parent="ShipSprite"]
+self_modulate = Color(0.863137, 0.74549, 0.743529, 1)
+scale = Vector2(0.7, 1)
+texture = ExtResource("2_txx7s")
+offset = Vector2(0, 63)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShipSprite"]
+playback_process_mode = 0
+libraries = {
+"": SubResource("AnimationLibrary_jyl1k")
+}
